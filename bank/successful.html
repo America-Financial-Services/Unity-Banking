@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Successful</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #4CAF50, #2E8B57);
+    }
+
+    .container {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .checkmark {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      display: inline-block;
+      border: 5px solid #4CAF50;
+      position: relative;
+      animation: pop 0.5s ease forwards;
+    }
+
+    .checkmark::after {
+      content: "";
+      position: absolute;
+      left: 25px;
+      top: 45px;
+      width: 25px;
+      height: 50px;
+      border-right: 5px solid #4CAF50;
+      border-bottom: 5px solid #4CAF50;
+      transform: rotate(45deg);
+      opacity: 0;
+      animation: draw 0.6s ease 0.5s forwards;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes draw {
+      0% { opacity: 0; transform: rotate(45deg) scale(0.2); }
+      100% { opacity: 1; transform: rotate(45deg) scale(1); }
+    }
+
+    h1 {
+      margin-top: 25px;
+      font-size: 28px;
+      color: #333;
+    }
+
+    p {
+      margin-top: 10px;
+      color: #666;
+      font-size: 16px;
+    }
+
+    .button {
+      margin-top: 25px;
+      display: inline-block;
+      background: #4CAF50;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s ease;
+    }
+
+    .button:hover {
+      background: #388E3C;
+      transform: scale(1.05);
+    }
+
+    footer {
+      margin-top: 30px;
+      color: #999;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="checkmark"></div>
+    <h1>Payment Completed!</h1>
+    <p>Your transaction was successful.<br>
+       Thank you for your payment.</p>
+    <a href="index.html" class="button">Return Home</a>
+    <footer>Transaction ID: #TXN-45892376</footer>
+
+<a  class="whats-app" href="https://wa.me/+2349163954496" target="_blank">
+    <img style="height: 55px;" src="public/hm/whatsapp.png" alt="">
+</a>
+
+  </div>
+</body>
+</html>

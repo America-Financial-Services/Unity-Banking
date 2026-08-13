@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Unity Banking Dashboard</title>
+<style>
+  /* Reset + base */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html,body { height: 100%; }
+  body{
+    font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+    background: #f4f6fb;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  /* Top bar */
+  .top-bar{
+    display:flex;justify-content:space-between;align-items:center;
+    background:linear-gradient(90deg,#003366,#0055a4);
+    color:#fff;padding:16px 25px;box-shadow:0 2px 5px rgba(0,0,0,.1);
+  }
+  .top-bar .left{display:flex;align-items:center;gap:12px}
+  .flag{width:28px;height:18px;border:1px solid #ccc;object-fit:cover}
+  .top-bar select{padding:6px 10px;border:none;border-radius:4px;font-size:14px;outline:none}
+  .top-bar .right a{color:#fff;margin-left:20px;text-decoration:none;font-weight:500;transition:opacity .2s}
+  .top-bar .right a:hover{opacity:.8}
+
+  /* Profile header */
+  .profile-header{
+    display:flex;align-items:center;gap:15px;padding:20px;background:#fff;
+    margin:20px auto;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,.08);
+    max-width:1000px;width:calc(100% - 40px);
+  }
+  .profile-header img{width:70px;height:70px;border-radius:50%;border:2px solid #eee;object-fit:cover}
+  .profile-header .details h3{font-size:1.1rem;color:#003366;margin-bottom:6px}
+  .profile-header .details p{font-size:0.95rem;color:#666}
+
+  /* Accounts grid */
+  .accounts{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:20px;max-width:1000px;width:calc(100% - 40px);margin:0 auto 10px;
+  }
+  .balance-card{
+    background:#fff;color:#003366;padding:25px;border-radius:12px;
+    box-shadow:0 2px 6px rgba(0,0,0,.08);
+  }
+  .balance-card h1{font-size:1.8rem;margin:10px 0;color:#1a4d3a}
+  .balance-info p{margin:5px 0;color:#444}
+  .account-number{font-size:14px;margin-top:10px;color:#555}
+
+  /* Upgrade alert */
+  .upgrade-alert {
+    background: #fff;
+    border: 2px solid #ffc107;
+    color: #4b3b00;
+    padding: 18px 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    max-width: 420px;
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-top:12px;
+    animation: fadeIn 0.6s ease-in-out;
+  }
+  .upgrade-alert strong { color: #e67e22; }
+  .upgrade-alert .cta {
+    display:inline-block;margin-top:12px;padding:9px 18px;background:#ffb400;
+    color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;text-decoration:none;
+  }
+  .upgrade-alert .cta:hover{transform:translateY(-2px);background:#e0a100}
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Action buttons */
+  .action-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin:20px auto;max-width:1000px;width:calc(100% - 40px)}
+  .action-buttons a{background:#003366;color:#fff;padding:12px 26px;text-decoration:none;border-radius:6px;font-weight:600;font-size:14px;transition:background .3s}
+  .action-buttons a:hover{background:#0055a4}
+
+  /* Card viewer */
+  .crypto-box{ text-align:center; max-width:420px; margin:14px auto; }
+  .view-card-box{ background-color:#34495e;color:#fff;padding:14px;margin-bottom:10px;cursor:pointer;border-radius:8px;font-weight:700;transition:background-color .2s }
+  .view-card-box:hover{background-color:#2c3e50}
+  .card-container{ position:relative;width:320px;height:200px;margin:0 auto 12px;border-radius:12px;overflow:hidden;cursor:pointer; display:none }
+  .atm-card{ position:absolute; width:100%; height:100%; object-fit:cover; left:0; top:0; display:block; transition:opacity .35s ease; }
+  .atm-card.hidden{ opacity:0; pointer-events:none; }
+  .apply-btn{ display:inline-block;margin-top:6px;padding:10px 22px;background-color:#075f1c;color:#fff;text-decoration:none;border-radius:6px;font-weight:700;font-size:14px;transition:background .2s }
+  .apply-btn:hover{background-color:#064815}
+
+  /* Transactions box */
+  .transactions-box{ width:calc(100% - 40px);margin:12px auto 30px;background:#fff;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,.08);overflow:hidden;max-width:1000px }
+  .transactions-header{ background:#003366;color:#fff;padding:15px 20px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center }
+  .transactions-content{ display:none;padding:20px; animation:fadeIn .25s ease; }
+  table{ width:100%; border-collapse:collapse; margin-top:10px }
+  thead{ background:#003366; color:#fff }
+  th,td{ padding:12px; text-align:center; font-size:14px; border-bottom:1px solid #eee }
+  tbody tr:nth-child(even){ background:#f9f9f9 }
+  tbody tr:hover{ background:#eef5ff }
+
+ /* Container styling */
+.signal {
+  display: inline-block;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Image styling */
+.signal img {
+  width: 50px; /* adjust size */
+  height: 50px; /* adjust size */
+  border-radius: 50%; /* makes it circular */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover effect */
+.signal:hover img {
+  transform: scale(1.1);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+<header class="top-bar">
+  <div class="left">
+    <img src="auth/usa.jpg" alt="Country flag" class="flag">
+    <select aria-label="Language selector"><option>English</option></select>
+  </div>
+  <div class="right">
+    <a href="#">Settings</a>
+    <a href="logout.html">Logout</a> <!-- Updated logout link -->
+  </div>
+</header>
+
+<main>
+  <section class="profile-header" role="region" aria-label="Profile">
+    <img src="auth/profile.jpeg" alt="Profile avatar">
+    <div class="details">
+      <h3>Victoria Augustine</h3>
+      <p>📍.
+</p>
+    </div>
+
+     </section>
+
+  <div class="accounts" role="region" aria-label="Accounts">
+    <section class="balance-card" aria-labelledby="ira-title">
+      <div class="balance-info">
+        <p id="ira-title">Total Balance</p>
+        <h1>$425,000.00</h1>
+       
+      
+
+  <div class="accounts" role="region" aria-label="Accounts">
+    <section class="balance-card" aria-labelledby="ira-title">
+      <div class="balance-info">
+        <p id="ira-title">Checking Account Balance</p>
+        <h1>$401,000.00</h1>
+        <p>Account Name<br><strong>Victoria Augustine</strong></p>
+      </div>
+      <div class="account-number">
+        <p>Account Number</p><strong>6034 4476 9012</strong>
+        <div class="upgrade-alert" role="alert">
+          ⚠️ <strong>Verification Issue Detected</strong><br>
+          Activate and ship your <strong>Debit Card</strong> before withdrawals are enabled.
+          <div><a class="cta" href="activate.html" onclick="openUpgrade()">Activate Now</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="balance-card" aria-labelledby="sav-title">
+      <div class="balance-info">
+        <p id="sav-title">Savings Account Balance</p>
+        <h1>$24,000.00</h1>
+        <p>Account Name<br><strong>Victoria Augustine</strong></p>
+      </div>
+      <div class="account-number">
+        <p>Account Number</p><strong>9567 1111 3351</strong>
+        <div class="upgrade-alert" role="alert">
+          ⚠️ <strong>Verification Issue Detected</strong><br>
+          Order and activate your debit card to enable spending.
+          <div><a class="cta" href="activate.html" onclick="openUpgrade()">Activate Now</a></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="action-buttons" role="navigation" aria-label="Actions">
+    <a href="transfer.html">Transfer</a>
+    <a href="deposit.html">Deposit</a>
+    <a href="withdraw.html">Withdraw</a>
+    <a href="wire.html">Send</a>
+  </div>
+
+  <section class="crypto-box" aria-label="Card ordering">
+    <h2 class="transactions-title">Order Your Debit/Credit Card</h2>
+    <div class="view-card-box" id="viewCardBox" role="button" tabindex="0" aria-pressed="false">View Bank Card</div>
+
+    <div class="card-container" id="cardContainer" aria-hidden="true" title="Click to flip card">
+      <img src="auth/back.png" alt="ATM Card Front" class="atm-card" id="cardFront">
+      <img src="auth/front.png" alt="ATM Card Back" class="atm-card hidden" id="cardBack">
+    </div>
+
+    <a href="ship.html" class="apply-btn" role="link">Apply For MasterCard</a>
+  </section>
+
+  <section class="transactions-box" aria-label="Transactions">
+    <div class="transactions-header" onclick="toggleHistory()" role="button" tabindex="0">
+      View Transactions History <span id="arrow">▼</span>
+    </div>
+
+    <div class="transactions-content" id="historyBox" aria-hidden="true">
+      <table>
+        <thead>
+<tr><td>1</td><td>2025-01-05</td><td>IronObit</td><td>IronObit Payroll</td><td>$2,000</td><td>Monthly Payment</td></tr>
+<tr><td>2</td><td>2025-02-05</td><td>IronObit</td><td>IronObit Payroll</td><td>$2,000</td><td>Monthly Payment</td></tr>
+<tr><td>3</td><td>2025-03-05</td><td>IronObit</td><td>IronObit Payroll</td><td>$2,000</td><td>Monthly Payment</td></tr>
+<tr><td>4</td><td>2025-04-05</td><td>IronObit</td><td>IronObit Payroll</td><td>$2,000</td><td>Monthly Payment</td></tr>
+<tr><td>5</td><td>2025-05-05</td><td>IronObit</td><td>IronObit Payroll</td><td>$2,000</td><td>Monthly Payment</td></tr>
+<tr><td>6</td><td>2025-06-05</td><td>IronObit</td><td>IronObit Payroll</td><td>$2,000</td><td>Monthly Payment</td></tr>
+<tr><td>7</td><td>2025-07-05</td><td>IronObit</td><td>IronObit Payroll</td><td>$2,000</td><td>Monthly Payment</td></tr>
+<tr><td>8</td><td>2025-08-05</td><td>IronObit</td><td>IronObit Payroll</td><td>$2,000</td><td>Monthly Payment</td></tr>
+<tr><td>9</td><td>2025-09-05</td><td>IronObit</td><td>IronObit Payroll</td><td>$2,000</td><td>Monthly Payment</td></tr>
+<tr><td>10</td><td>2025-10-05</td><td>IronObit</td><td>IronObit Payroll</td><td>$2,000</td><td>Monthly Payment</td></tr>
+<tr><td>11</td><td>2025-11-05</td><td>IronObit</td><td>IronObit Payroll</td><td>$2,000</td><td>Monthly Payment</td></tr>
+<tr><td>12</td><td>2025-11-18</td><td>IronObit</td><td>IronObit Benefits</td><td>$401,000</td><td>Benefit Payment</td></tr>
+<tr><td>13</td><td>2025-12-13</td><td>IronObit</td><td>IronObit Payroll</td><td>$2,000</td><td>Monthly Payment</td></tr>
+             <tbody>
+
+  <!-- October 2025 -->
+  
+      </table>
+    </div>
+  </section>
+</main>
+
+<a class="signal" href="sgnl://send/+17185041244" target="_blank" aria-label="Open Signal">
+  <img src="auth/signal.jpeg" alt="Signal">
+</a>
+
+<footer>&copy; <span id="year"></span> Unity Banking Dashboard. All rights reserved.</footer>
+
+<script>
+  // Update year
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Transactions toggle
+  function toggleHistory(){
+    const box = document.getElementById("historyBox");
+    const arrow = document.getElementById("arrow");
+    if (box.style.display === "block") {
+      box.style.display = "none";
+      box.setAttribute('aria-hidden','true');
+      arrow.textContent = "▼";
+    } else {
+      box.style.display = "block";
+      box.setAttribute('aria-hidden','false');
+      arrow.textContent = "▲";
+    }
+  }
+
+  function openUpgrade(){
+    window.location.href = "activate.html";
+  }
+
+  // Card show/hide + flip logic
+  const viewBox = document.getElementById('viewCardBox');
+  const cardContainer = document.getElementById('cardContainer');
+  const cardFront = document.getElementById('cardFront');
+  const cardBack = document.getElementById('cardBack');
+  let showingFront = true;
+
+  viewBox.addEventListener('click', () => {
+    const isHidden = cardContainer.style.display === '' || cardContainer.style.display === 'none';
+    cardContainer.style.display = isHidden ? 'block' : 'none';
+    cardContainer.setAttribute('aria-hidden', isHidden ? 'false' : 'true');
+    viewBox.setAttribute('aria-pressed', String(!isHidden));
+  });
+
+  cardContainer.addEventListener('click', () => {
+    if (showingFront) {
+      cardFront.classList.add('hidden');
+      cardBack.classList.remove('hidden');
+    } else {
+      cardFront.classList.remove('hidden');
+      cardBack.classList.add('hidden');
+    }
+    showingFront = !showingFront;
+  });
+
+  viewBox.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') viewBox.click();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bitcoin Payment Confirmation</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0a0a0a, #1c1c1c);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 40px;
+      width: 370px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      backdrop-filter: blur(12px);
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      font-size: 22px;
+      color: #f5b041;
+      letter-spacing: 0.5px;
+    }
+
+    .qr-section img {
+      width: 350px;
+      height: 350px;
+      border-radius: 10px;
+      margin-top: 10px;
+      border: 2px solid #f5b041;
+    }
+
+    .wallet {
+      background: #111;
+      border: 1px solid #444;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 14px;
+      word-break: break-all;
+      color: #0ff;
+      margin: 10px 0 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      text-align: left;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      font-size: 14px;
+      background: #222;
+      color: #fff;
+    }
+
+    input[type="file"] {
+      background: none;
+      border: 1px dashed #777;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    input[type="file"]::-webkit-file-upload-button {
+      background: #f5b041;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 12px;
+      color: #000;
+      cursor: pointer;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    button {
+      background: #f5b041;
+      color: #000;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 15px;
+      transition: 0.3s ease;
+      width: 100%;
+    }
+
+    button:hover {
+      background: #ffcd5c;
+    }
+
+    .note {
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>$300</h1>
+    <h1>BTC 300</h1>
+    <h2>Bitcoin Payment Send to Wallet Address or Scan QR Code</h2>
+
+    <div class="qr-section">
+      <img src="auth/qr.jpeg" alt="Bitcoin QR Code" />
+    </div>
+
+    <div class="wallet">
+      BTC Wallet: 18XwfP8RJKeyJskkTJZGYMJc8PGp81id7p
+    </div>
+
+    <form action="successful.html" method="get">
+      <input type="file" accept="image/*" required />
+      <button type="submit">Submit Payment Screenshot</button>
+    </form>
+
+    <a class="signal" href="sgnl://send/+17185041244" target="_blank" aria-label="Open Signal">
+  <img src="auth/signal.png" alt="Signal">
+</a>
+
+    <p class="note">
+      After sending payment, upload your transaction screenshot for confirmation.
+    </p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,184 @@
+@charset "utf-8";
+
+
+.language-switcher-style2 {
+    position: relative;
+    display: block;
+    width: 80px;
+    height: 40px;
+    padding-left: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.language-switcher-style2 .icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+.language-switcher {
+    position: relative;
+    display: block;
+    padding: 0px 0px;
+}
+
+#polyglotLanguageSwitcher {}
+
+
+
+#polyglotLanguageSwitcher,
+#polyglotLanguageSwitcher * {
+    margin: 0;
+    padding: 0px 0px 0px;
+    outline: none;
+}
+
+#polyglotLanguageSwitcher ul {
+    list-style: none;
+}
+
+#polyglotLanguageSwitcher {
+    color: #fff;
+    line-height: normal;
+    position: relative;
+}
+
+#polyglotLanguageSwitcher form {
+    display: none;
+}
+
+/* ---------------------------------------------------------------------- */
+/* JS-created Code
+/* ---------------------------------------------------------------------- */
+#polyglotLanguageSwitcher a {
+    text-decoration: none;
+    display: block;
+    padding: 0px 0px 0px 0;
+    padding-left: 0px;
+    background-repeat: no-repeat;
+    background-position: right 5px;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 700;
+    text-transform: capitalize;
+    font-family: var(--thm-font-2);
+    transition: all 500ms ease;
+    background-image: none;
+}
+
+#polyglotLanguageSwitcher a.current11:link,
+#polyglotLanguageSwitcher a.current11:visited,
+#polyglotLanguageSwitcher a.current11:active {
+    position: relative;
+    /* sets the initial position for the trigger arrow */
+}
+
+
+
+#polyglotLanguageSwitcher a.active {
+    /* This style is applied as long as the drop-down menu is visible. */
+    border-bottom: none !important;
+    border-radius: 3px 3px 0 0 !important;
+}
+
+
+
+
+
+
+#polyglotLanguageSwitcher span.trigger {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    padding: 0;
+    width: 15px;
+    height: 20px;
+    display: none;
+}
+
+#polyglotLanguageSwitcher span.trigger:before {
+    font-family: 'icomoon' !important;
+    content: "\e901";
+    position: absolute;
+    color: var(--thm-black);
+    font-size: 16px;
+    top: 0px;
+    right: 0px;
+}
+
+
+#polyglotLanguageSwitcher a.current11:hover span.trigger,
+#polyglotLanguageSwitcher a.current11:active span.trigger,
+#polyglotLanguageSwitcher a.active span.trigger {
+    background-position: left bottom !important;
+}
+
+
+
+/* Drop-Down Menu */
+#polyglotLanguageSwitcher ul.dropdown {
+    display: none;
+    position: absolute;
+    top: 35px;
+    left: auto;
+    border-top: none !important;
+    border-radius: 0;
+    z-index: 99999;
+    background: var(--thm-black);
+    width: 140px;
+    right: 0;
+    padding: 7px 20px 10px;
+}
+
+#polyglotLanguageSwitcher ul.dropdown li {
+    width: 100%;
+    padding: 6px 0px;
+    display: block;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    transition: all 0.2s ease-in-out;
+}
+
+#polyglotLanguageSwitcher ul.dropdown li a {
+    color: #ffffff;
+    width: 100%;
+}
+
+.top_header #polyglotLanguageSwitcher ul.dropdown li:after {
+    display: none !important;
+
+}
+
+#polyglotLanguageSwitcher ul.dropdown li:first-child {
+    border: none;
+}
+
+#polyglotLanguageSwitcher ul.dropdown li:last-child {
+    border-radius: 0 0 3px 3px;
+}
+
+#polyglotLanguageSwitcher ul.dropdown li:hover a {
+    color: #ddd;
+}
+
+
+
+#en {
+    background-image: url(gb.png);
+}
+
+#fr {
+    background-image: url(fr.png);
+}
+
+#de {
+    background-image: url(de.png);
+}
+
+#it {
+    background-image: url(it.png);
+}
+
+#es {
+    background-image: url(es.png);
+}

@@ -1,0 +1,357 @@
+/*** 
+=============================================
+   Testimonial Style1 Css
+=============================================
+***/
+.testimonials-style1 {
+    position: relative;
+    display: block;
+    background-color: #ffffff;
+    padding: 130px 0px 130px;
+    overflow: hidden;
+    border-bottom: 1px solid #e3e5ef;
+    z-index: 10;
+}
+
+
+.testimonials-style1__top {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 55px;
+}
+
+.testimonials-style1__top .sec-title {
+    padding-bottom: 0px;
+}
+
+.testimonials-style1__top .btn-box {
+    position: relative;
+    display: block;
+    margin-bottom: 14px;
+}
+
+.testimonials-style1__top .btn-box .btn-one {
+    color: #515151;
+    font-size: 17px;
+    line-height: 48px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.testimonials-style1__top .btn-box .btn-one:hover {
+    color: #FFFFFF;
+}
+
+.testimonials-style1__top .btn-box .btn-one:before {
+    background: var(--thm-base);
+}
+
+.testimonials-style1__top .btn-box .btn-one:after {
+    background: #FFFFFF;
+    border: 1px solid #AAAAAA;
+    border-radius: 2px;
+}
+
+.testimonials-style1__top .btn-box .btn-one i {
+    width: 22px;
+    height: 22px;
+    background-color: #d9d9d9;
+}
+
+
+
+.testimonial-style1-box {
+    position: relative;
+    display: block;
+}
+
+.testimonial-style1-box__content {
+    position: relative;
+    display: block;
+}
+
+.single-testimonials-style1 {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.single-testimonials-style1 .img-box {
+    position: relative;
+    display: block;
+    top: -20px;
+    max-width: 250px;
+}
+
+.single-testimonials-style1 .img-box .inner {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+}
+
+.single-testimonials-style1 .img-box .inner:before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    background-color: var(--thm-base);
+    border-radius: 50%;
+    opacity: 0;
+    -webkit-transform: perspective(400px) rotateX(0deg) scale(0);
+    -ms-transform: perspective(400px) rotateX(0deg) scale(0);
+    transform: perspective(400px) rotateX(0deg) scale(0);
+    -webkit-transform-origin: bottom;
+    -ms-transform-origin: bottom;
+    transform-origin: bottom;
+    transition: -webkit-transform 0.4s ease;
+    transition: transform 0.4s ease;
+    transition: transform 0.4s ease, -webkit-transform 0.4s ease;
+}
+
+.single-testimonials-style1 .img-box .inner:hover::before {
+    opacity: 0.40;
+    -webkit-transform: perspective(400px) rotateX(0deg) scale(1);
+    -ms-transform: perspective(400px) rotateX(0deg) scale(1);
+    transform: perspective(400px) rotateX(0deg) scale(1);
+}
+
+.single-testimonials-style1 .img-box .inner img {
+    width: 100%;
+}
+
+.testimonial-style1-box__quote-icon {
+    position: absolute;
+    top: 60px;
+    right: -60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 130px;
+    height: 130px;
+    background: #FFEBD9;
+    border: 10px solid #ffffff;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.testimonial-style1-box__quote-icon span {
+    position: relative;
+    display: inline-block;
+    font-size: 38px;
+    color: var(--thm-black);
+}
+
+.single-testimonials-style1 .text-box {
+    position: relative;
+    display: block;
+    padding-left: 175px;
+    flex: 1;
+}
+
+.single-testimonials-style1 .text-box .top {
+    position: relative;
+    display: block;
+}
+
+.single-testimonials-style1 .text-box .top .rating-box-style1 {
+    margin-bottom: 40px;
+}
+
+.single-testimonials-style1 .text-box .top .rating-box-style1 ul li+li {
+    padding-left: 10px;
+}
+
+.single-testimonials-style1 .text-box .top .rating-box-style1 ul li span {
+    position: relative;
+    display: inline-block;
+    color: #ffcc2f;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.single-testimonials-style1 .text-box .top p {
+    color: #515151;
+    font-size: 20px;
+    line-height: 36px;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+}
+
+
+
+.single-testimonials-style1 .text-box .customer-info {
+    position: relative;
+    display: block;
+    padding-top: 35px;
+    margin-top: 34px;
+    border-top: 1px solid #D9D9D9;
+}
+
+.single-testimonials-style1 .text-box .customer-info h3 {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-bottom: 1px;
+}
+
+.single-testimonials-style1 .text-box .customer-info span {
+    color: #515151;
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+
+
+.testimonial-style1-carousel.owl-nav-style-one.owl-theme .owl-nav {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.testimonial-style1-carousel.owl-nav-style-one.owl-theme .owl-nav [class*="owl-"] {
+    width: 53px;
+    height: 53px;
+    background-color: #182978;
+    border: 0px solid transparent;
+    border-radius: 0%;
+}
+
+.testimonial-style1-carousel.owl-nav-style-one.owl-theme .owl-nav [class*="owl-"]:before {
+    background-color: var(--thm-base);
+    border-radius: 0%;
+}
+
+.testimonial-style1-carousel.owl-nav-style-one.owl-theme .owl-nav [class*="owl-"] span {
+    color: #FFFFFF;
+    font-size: 17px;
+}
+
+/*** 
+=============================================
+    Testimonials Style2 Css
+=============================================
+***/
+.testimonials-style2 {
+    position: relative;
+    display: block;
+    background: #f5f5f5;
+    padding: 130px 0 80px;
+    z-index: 10;
+}
+
+
+
+.single-testimonials-style2 {
+    position: relative;
+    display: block;
+    background: #FFFFFF;
+    border-radius: 10px;
+    padding: 47px 55px 42px;
+    margin-bottom: 50px;
+    transition: all 200ms linear;
+    transition-delay: 0.1s;
+}
+
+.single-testimonials-style2:hover {
+    box-shadow: 4px 4px 30px 10px rgba(0, 0, 0, 0.05);
+}
+
+.single-testimonials-style2 .quote-box {
+    position: relative;
+    display: block;
+    padding-bottom: 12px;
+}
+
+.single-testimonials-style2 .quote-box span {
+    position: relative;
+    display: inline-block;
+    color: #EBEBEB;
+    font-size: 42px;
+    line-height: 42px;
+    transition: all 200ms linear;
+    transition-delay: 0.1s;
+}
+
+.single-testimonials-style2:hover .quote-box span {
+    color: var(--thm-primary);
+}
+
+.single-testimonials-style1 .text-box {
+    position: relative;
+    display: block;
+}
+
+.single-testimonials-style2 .text-box p {
+    color: var(--thm-gray);
+}
+
+.single-testimonials-style2 .customer-info {
+    position: relative;
+    display: block;
+    margin-top: 30px;
+}
+
+.single-testimonials-style2 .customer-info .img-box {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+}
+
+.single-testimonials-style2 .customer-info .img-box:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    right: 0;
+    height: 100%;
+    background-color: var(--thm-base);
+    opacity: 0.7;
+    border-radius: 50%;
+    transition: -webkit-transform 0.4s ease;
+    transition: transform 0.4s ease;
+    transition: transform 0.4s ease, -webkit-transform 0.4s ease;
+    transform-origin: top center;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    z-index: 3;
+}
+
+.single-testimonials-style2:hover .customer-info .img-box:before {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+}
+
+.single-testimonials-style2 .customer-info .img-box img {
+    width: 100%;
+    transition: all 200ms linear;
+    transition-delay: 0.1s;
+}
+
+.single-testimonials-style2 .customer-info .title-box {
+    position: relative;
+    display: block;
+    margin-top: 15px;
+}
+
+.single-testimonials-style2 .customer-info .title-box h3 {
+    font-size: 18px;
+    line-height: 26px;
+    text-transform: capitalize;
+    margin-bottom: 1px;
+}
+
+.single-testimonials-style2 .customer-info .title-box span {
+    color: var(--thm-gray);
+}

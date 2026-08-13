@@ -1,0 +1,73 @@
+/* Global */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
+body { background: #f7f9fb; color: #333; min-height: 100vh; display: flex; flex-direction: column; }
+
+/* Top Bar */
+.top-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  background: #003366; color: white; padding: 12px 25px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.top-bar .left { display: flex; align-items: center; gap: 12px; }
+.top-bar .flag { width: 28px; height: 18px; border: 1px solid #ccc; }
+.top-bar select { padding: 6px; border: none; border-radius: 4px; font-size: 14px; outline: none; }
+.top-bar .right a { color: white; margin-left: 20px; text-decoration: none; font-weight: 500; transition: color 0.2s; }
+.top-bar .right a:hover { color: #ffd700; }
+
+/* Profile */
+.profile-header {
+  display: flex; align-items: center; gap: 15px;
+  padding: 20px; background: white; margin: 20px;
+  border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.profile-header img { width: 70px; height: 70px; border-radius: 50%; border: 2px solid #eee; }
+
+/* Balance Cards */
+.balance-card {
+  background: white; color: #003366; padding: 25px;
+  display: flex; justify-content: space-between; flex-wrap: wrap;
+  border-radius: 10px; margin: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+.balance-card h1 { font-size: 2em; margin: 10px 0; color: #1a4d3a; }
+.balance-info p { margin: 5px 0; }
+.account-number { text-align: right; font-size: 14px; }
+
+/* Action Buttons */
+.action-buttons { text-align: center; margin: 30px 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.action-buttons a {
+  background: #003366; color: white; padding: 12px 28px;
+  text-decoration: none; border-radius: 6px;
+  font-weight: 600; font-size: 14px; transition: background 0.3s;
+}
+.action-buttons a:hover { background: #0055a4; }
+
+/* Transactions */
+.transactions-box {
+  width: calc(100% - 40px); margin: 0 auto 30px; background: white;
+  border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+.transactions-header {
+  background: #003366; color: white; padding: 15px; font-weight: bold;
+  cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+}
+.transactions-content { display: none; padding: 20px; }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+thead { background: #003366; color: white; }
+th, td { padding: 12px; text-align: center; font-size: 14px; border-bottom: 1px solid #eee; }
+tbody tr:nth-child(even) { background: #f9f9f9; }
+tbody tr:hover { background: #eef5ff; }
+
+/* Footer */
+footer {
+  background: #003366; color: white; text-align: center;
+  padding: 15px 10px; margin-top: auto; font-size: 13px;
+}
+
+/* Chat Button */
+#chatSupport {
+  position: fixed; bottom: 20px; right: 20px;
+  background: #003366; color: white; padding: 10px 15px;
+  border-radius: 8px; cursor: pointer; font-size: 14px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}

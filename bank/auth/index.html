@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Global Services Banking Dashboard</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+    body { background: #f4f4fc; color: #111; }
+
+    .top-bar {
+      display: flex; justify-content: space-between; align-items: center;
+      background: #1e4d3a; color: white; padding: 10px 20px;
+    }
+
+    .top-bar .left { display: flex; align-items: center; gap: 10px; }
+    .top-bar .flag { width: 30px; height: 20px; }
+    .top-bar select { padding: 5px; border: none; border-radius: 4px; }
+    .top-bar .right a { color: white; margin-left: 20px; text-decoration: none; }
+
+    .profile-header {
+      display: flex; align-items: center; gap: 15px;
+      padding: 20px; background: white; margin: 20px;
+      border-radius: 10px; box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    .profile-header img {
+      width: 70px; height: 70px; border-radius: 50%;
+    }
+
+    .balance-card {
+      background: #1e4d3a; color: white; padding: 30px;
+      display: flex; justify-content: space-between;
+      border-radius: 10px; margin: 20px; flex-wrap: wrap;
+    }
+
+    .balance-card h1 { font-size: 2.2em; margin: 10px 0; }
+    .account-number { text-align: right; }
+
+    .action-buttons {
+      text-align: center; margin: 30px 0;
+      display: flex; flex-wrap: wrap;
+      justify-content: center; gap: 10px;
+    }
+
+    .action-buttons a {
+      background: #1e4d3a; color: white; padding: 12px 25px;
+      text-decoration: none; border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .transactions-title {
+      margin: 30px 20px 10px; font-weight: bold; font-size: 20px;
+    }
+
+    table {
+      width: calc(100% - 40px); margin: 0 auto;
+      border-collapse: collapse; background: white;
+      border-radius: 10px; overflow: hidden;
+    }
+
+    thead { background: #ddd; }
+    th, td {
+      padding: 10px; text-align: center; font-size: 14px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    @media screen and (max-width: 768px) {
+      .balance-card { flex-direction: column; gap: 15px; }
+      .account-number { text-align: left; }
+      .action-buttons { flex-direction: column; }
+    }
+  </style>
+  <script>
+  // Check if user is logged in
+  window.onload = function() {
+    const loggedIn = sessionStorage.getItem("loggedIn");
+
+    // Redirect to login if not logged in
+    if (!loggedIn) {
+      window.location.href = "../auth/login.html"; // Corrected relative path
+    } else {
+      console.log("Welcome to the dashboard. Session active.");
+    }
+  };
+
+  // Logout function
+  function logout() {
+    sessionStorage.removeItem("loggedIn");
+    window.location.href = "../auth/login.html"; // Corrected relative path
+  }
+</script>
+
+</head>
+<body>
+
+  <header class="top-bar">
+    <div class="left">
+      <img src="https://flagcdn.com/gb.svg" alt="UK Flag" class="flag">
+      <select><option>English</option></select>
+    </div>
+    <div class="right">
+      <a href="settings.html">Settings</a>
+      <a href="logout.html" onclick="logout()">Logout</a>
+    </div>
+  </header>
+
+  <section class="profile-header">
+    <img src="profile.jpg" alt="Keanu Reeves">
+    <div class="details">
+      <h3>Keanu Charles Reeves</h3>
+      <p>9026 Thrasher Ave, Los Angeles, CA 90003</p>
+    </div>
+  </section>
+
+   <!-- Checking Account -->
+   <section class="balance-card">
+    <div class="balance-info">
+      <p>Checking Account Balance</p>
+      <h1>$150,000,000.00 USD</h1>
+      <p>Account Name<br><strong>Keanu Charles Reeves</strong></p>
+    </div>
+    <div class="account-number">
+      <p>Account Number</p><strong>8787504713</strong><br/>
+      <p>Routing Number</p><strong>101000022</strong>
+    </div>
+  </section>
+
+
+  <!-- Saving Account -->
+  <section class="balance-card">
+    <div class="balance-info">
+      <p>Saving Account Balance</p>
+      <h1>$110,000,000.00 USD</h1>
+      <p>Account Name<br><strong>Keanu Charles Reeves</strong></p>
+    </div>
+    <div class="account-number">
+      <p>Account Number</p><strong>5400310988</strong><br/>
+      <p>Routing Number</p><strong>749000198</strong>
+    </div>
+  </section>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <a href="transfer-form.html">Transfer</a>
+    <a href="receive-form.html">Receive</a>
+    <a href="ach-form.html">ACH</a>
+    <a href="wire-transfer-form.html">Wire Transfer</a>
+    <a href="deposit-form.html">Deposit</a>
+    <a href="withdraw-form.html">Withdraw</a>
+  </div>
+
+  <div class="transactions-title">Transaction History</div>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Date</th>
+        <th>Bank</th>
+        <th>Sender</th>
+        <th>Amount (USD)</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+     <tbody>
+    <tr><td>1</td><td>2024-05-12</td><td>Chase Bank</td><td>Emily Carter</td><td>$10,500</td><td>Deposit</td></tr>
+    <tr><td>2</td><td>2024-06-03</td><td>Wells Fargo</td><td>John Smith</td><td>$12,800</td><td>ACH</td></tr>
+    <tr><td>3</td><td>2024-06-24</td><td>Bank of America</td><td>Lisa Johnson</td><td>$15,000</td><td>Transfer</td></tr>
+    <tr><td>4</td><td>2024-07-02</td><td>Capital One</td><td>David Lee</td><td>$25,500</td><td>Wire Transfer</td></tr>
+    <tr><td>5</td><td>2024-07-20</td><td>Citi Bank</td><td>Jennifer Adams</td><td>$11,400</td><td>Deposit</td></tr>
+    <tr><td>6</td><td>2024-08-08</td><td>HSBC USA</td><td>Michael Rodriguez</td><td>$20,000</td><td>ACH</td></tr>
+    <tr><td>7</td><td>2024-08-26</td><td>PNC Bank</td><td>Susan Martinez</td><td>$30,300</td><td>Wire Transfer</td></tr>
+    <tr><td>8</td><td>2024-09-15</td><td>TD Bank</td><td>Robert Taylor</td><td>$18,750</td><td>Transfer</td></tr>
+    <tr><td>9</td><td>2024-09-29</td><td>US Bank</td><td>Mary Walker</td><td>$14,200</td><td>Withdraw</td></tr>
+    <tr><td>10</td><td>2024-10-11</td><td>Regions Bank</td><td>Daniel Harris</td><td>$16,800</td><td>Deposit</td></tr>
+    <tr><td>11</td><td>2024-10-27</td><td>SunTrust Bank</td><td>Patricia Allen</td><td>$22,500</td><td>ACH</td></tr>
+    <tr><td>12</td><td>2024-11-12</td><td>BB&T Bank</td><td>Steven Clark</td><td>$28,000</td><td>Wire Transfer</td></tr>
+    <tr><td>13</td><td>2024-12-01</td><td>Fifth Third Bank</td><td>Donna Lewis</td><td>$35,000</td><td>Transfer</td></tr>
+    <tr><td>14</td><td>2024-12-19</td><td>Ally Bank</td><td>Thomas Young</td><td>$19,900</td><td>Receive</td></tr>
+    <tr><td>15</td><td>2025-01-04</td><td>KeyBank</td><td>Elizabeth King</td><td>$16,450</td><td>Deposit</td></tr>
+    <tr><td>16</td><td>2025-01-19</td><td>Discover Bank</td><td>Mark Wright</td><td>$23,100</td><td>Withdraw</td></tr>
+    <tr><td>17</td><td>2025-02-05</td><td>First Republic Bank</td><td>Carol Hill</td><td>$27,800</td><td>ACH</td></tr>
+    <tr><td>18</td><td>2025-02-22</td><td>Charles Schwab Bank</td><td>Matthew Scott</td><td>$33,200</td><td>Wire Transfer</td></tr>
+    <tr><td>19</td><td>2025-03-10</td><td>SoFi Bank</td><td>Amy Green</td><td>$45,600</td><td>Transfer</td></tr>
+    <tr><td>20</td><td>2025-03-25</td><td>Robinhood Bank</td><td>Larry Baker</td><td>$26,350</td><td>Deposit</td></tr>
+    <tr><td>21</td><td>2025-04-02</td><td>American Express Bank</td><td>Samantha Nelson</td><td>$38,000</td><td>ACH</td></tr>
+    <tr><td>22</td><td>2025-04-10</td><td>Comerica Bank</td><td>Joshua Hall</td><td>$40,100</td><td>Wire Transfer</td></tr>
+    <tr><td>23</td><td>2025-04-17</td><td>Citizens Bank</td><td>Rebecca Allen</td><td>$13,600</td><td>Transfer</td></tr>
+    <tr><td>24</td><td>2025-04-25</td><td>First Horizon Bank</td><td>Anthony Phillips</td><td>$29,900</td><td>Deposit</td></tr>
+    <tr><td>25</td><td>2025-05-01</td><td>Huntington Bank</td><td>Karen Campbell</td><td>$17,750</td><td>Withdraw</td></tr>
+    <tr><td>26</td><td>2025-05-04</td><td>Old National Bank</td><td>Jason Stewart</td><td>$21,200</td><td>ACH</td></tr>
+    <tr><td>27</td><td>2025-05-10</td><td>Santander Bank</td><td>Rachel Turner</td><td>$44,500</td><td>Receive</td></tr>
+    <tr><td>28</td><td>2025-05-14</td><td>Flagstar Bank</td><td>Jeffrey Ramirez</td><td>$31,700</td><td>Wire Transfer</td></tr>
+    <tr><td>29</td><td>2025-05-20</td><td>BMO Harris Bank</td><td>Angela Cox</td><td>$36,900</td><td>Transfer</td></tr>
+    <tr><td>30</td><td>2025-05-27</td><td>Truist Bank</td><td>Eric Edwards</td><td>$42,300</td><td>Deposit</td></tr>
+  </tbody>
+  </table>
+
+</body>
+</html>

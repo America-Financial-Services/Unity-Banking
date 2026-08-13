@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unity Banking | Account Settings</title>
+<style>
+body{font-family:Arial,sans-serif;background:#eef3f7;margin:0;padding:0}.container{max-width:650px;margin:40px auto;background:#fff;padding:30px;box-shadow:0 4px 10px rgba(0,0,0,.1);border-radius:10px;box-sizing:border-box}h2{text-align:center;color:#0077b6;margin-bottom:8px}.note{text-align:center;color:#667085;margin:0 0 25px}label{display:block;margin-bottom:6px;font-weight:bold;color:#333}input,select{width:100%;padding:10px;margin-bottom:18px;border:1px solid #ccc;border-radius:6px;font-size:16px;box-sizing:border-box}.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}.password-wrap{position:relative}.password-wrap input{padding-right:70px}.toggle{position:absolute;right:8px;top:10px;border:0;background:transparent;color:#0077b6;font-weight:bold;cursor:pointer}.save{background:#0077b6;color:#fff;padding:12px 18px;border:0;border-radius:6px;font-size:16px;cursor:pointer;width:100%}.save:hover{background:#023e8a}.message{display:none;padding:12px;border-radius:6px;margin-bottom:18px}.message.ok{display:block;background:#e7f8ee;color:#166534}.message.err{display:block;background:#fdecec;color:#b42318}.back-link{display:block;margin-top:20px;text-align:center;color:#0077b6;text-decoration:none}@media(max-width:600px){.container{margin:16px}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+<h2>Account Settings</h2><p class="note">Update your Unity Banking profile and security credentials.</p><div id="message" class="message"></div>
+<form id="settingsForm" autocomplete="off">
+<label for="username">Username</label><input type="text" id="username" minlength="3" maxlength="40" required>
+<div class="row"><div><label for="fullName">Full Name</label><input type="text" id="fullName"></div><div><label for="email">Email Address</label><input type="email" id="email"></div></div>
+<div class="row"><div><label for="phone">Phone Number</label><input type="tel" id="phone"></div><div><label for="notifications">Notification Preference</label><select id="notifications"><option value="email">Email</option><option value="sms">SMS</option><option value="none">None</option></select></div></div>
+<label for="currentPassword">Current Password (required to save)</label><div class="password-wrap"><input type="password" id="currentPassword" required><button type="button" class="toggle" data-target="currentPassword">Show</button></div>
+<label for="newPassword">New Password</label><div class="password-wrap"><input type="password" id="newPassword" minlength="8" placeholder="Leave blank to keep current password"><button type="button" class="toggle" data-target="newPassword">Show</button></div>
+<div class="row"><div><label for="currentPin">Current PIN (required only when changing PIN)</label><div class="password-wrap"><input type="password" inputmode="numeric" id="currentPin" maxlength="6"><button type="button" class="toggle" data-target="currentPin">Show</button></div></div><div><label for="newPin">New PIN</label><div class="password-wrap"><input type="password" inputmode="numeric" id="newPin" maxlength="6" pattern="[0-9]{4,6}" placeholder="4–6 digits"><button type="button" class="toggle" data-target="newPin">Show</button></div></div></div>
+<button class="save" type="submit">Save Settings</button>
+</form><a href="dashboard.html" class="back-link">← Back to Dashboard</a>
+</div>
+<script>
+const token=sessionStorage.getItem('unityToken');if(!token)location.href='login.html';
+const msg=document.getElementById('message');const headers={'Content-Type':'application/json','Authorization':'Bearer '+token};
+function show(text,ok=false){msg.textContent=text;msg.className='message '+(ok?'ok':'err')}
+document.querySelectorAll('.toggle').forEach(btn=>btn.addEventListener('click',()=>{const i=document.getElementById(btn.dataset.target);i.type=i.type==='password'?'text':'password';btn.textContent=i.type==='password'?'Show':'Hide'}));
+async function load(){try{const r=await fetch('/api/account',{headers:{Authorization:'Bearer '+token}});const d=await r.json();if(r.status===401){sessionStorage.clear();location.href='login.html';return}if(!r.ok)throw new Error(d.message||'Unable to load account.');username.value=d.username||'';fullName.value=d.fullName||'';email.value=d.email||'';phone.value=d.phone||'';notifications.value=d.notifications||'email'}catch(e){show(e.message)}}
+document.getElementById('settingsForm').addEventListener('submit',async e=>{e.preventDefault();msg.className='message';const body={username:username.value.trim(),fullName:fullName.value.trim(),email:email.value.trim(),phone:phone.value.trim(),notifications:notifications.value,currentPassword:currentPassword.value,newPassword:newPassword.value,currentPin:currentPin.value,newPin:newPin.value};try{const r=await fetch('/api/account',{method:'PUT',headers,body:JSON.stringify(body)});const d=await r.json();if(!r.ok)throw new Error(d.message||'Unable to update account.');sessionStorage.setItem('unityUsername',d.username);currentPassword.value='';newPassword.value='';currentPin.value='';newPin.value='';show(d.message,true)}catch(e){show(e.message)}});load();
+</script>
+</body>
+</html>

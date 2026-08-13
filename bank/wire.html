@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wire Transfer Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef3f7;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    h2 {
+      text-align: center;
+      color: #0077b6;
+      margin-bottom: 30px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: #333;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    textarea {
+      resize: vertical;
+    }
+    button {
+      background-color: #0077b6;
+      color: white;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #023e8a;
+    }
+    .back-link {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      color: #0077b6;
+      text-decoration: none;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Wire Transfer</h2>
+    <form action="wire-transfer-submit.php" method="post">
+      <label for="sender">Sender Name</label>
+      <input type="text" id="sender" name="sender" placeholder="e.g. Keanu Charles Reeves" required />
+
+      <label for="recipient">Recipient Name</label>
+      <input type="text" id="recipient" name="recipient" placeholder="e.g. Emily Carter" required />
+
+      <label for="bank">Recipient Bank Name</label>
+      <input type="text" id="bank" name="bank" placeholder="e.g. Bank of America" required />
+
+      <label for="account-number">Recipient Account Number</label>
+      <input type="text" id="account-number" name="account-number" placeholder="e.g. 1234567890" required />
+
+      <label for="routing-number">Routing Number</label>
+      <input type="text" id="routing-number" name="routing-number" placeholder="e.g. 026009593" required />
+
+      <label for="amount">Amount (USD)</label>
+      <input type="number" id="amount" name="amount" placeholder="e.g. 10000" required />
+
+      <label for="description">Description / Note (optional)</label>
+      <textarea id="description" name="description" rows="3" placeholder="Optional note or description..."></textarea>
+
+      <button type="submit">Submit Wire Transfer</button>
+    </form>
+    <a href="dashboard.html" class="back-link">← Back to Dashboard</a>
+  </div>
+</body>
+</html>

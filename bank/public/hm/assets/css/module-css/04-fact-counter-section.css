@@ -1,0 +1,154 @@
+/*** 
+=============================================
+    Fact Counter style1 Css
+=============================================
+***/
+.fact-counter-style1 {
+    position: relative;
+    display: block;
+    padding: 130px 0px 65px;
+    background: var(--thm-base);
+    overflow: hidden;
+    z-index: 10;
+}
+
+.fact-counter-style1 .sec-title {
+    padding-bottom: 74px;
+}
+
+.fact-counter-style1 .sec-title .sub-title .border-line {
+    background-color: #ffffff;
+}
+
+.fact-counter-style1 .sec-title .sub-title h4 {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.fact-counter-style1 .sec-title h2 {
+    color: #ffffff;
+}
+
+.fact-counter-style1 .shape-top {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    width: 458px;
+    height: 265px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.08);
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+    z-index: 1;
+}
+
+.fact-counter-style1-bg-1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 50%;
+    background: var(--thm-base);
+    background-blend-mode: soft-light;
+    opacity: 0.30;
+    background-attachment: scroll;
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+}
+
+.fact-counter-style1-bg-2 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0px;
+    width: 50%;
+    background: var(--thm-base);
+    background-blend-mode: soft-light;
+    opacity: 0.30;
+    background-attachment: scroll;
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+}
+
+
+
+.single-fact-counter {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 60px;
+    z-index: 1;
+}
+
+.single-fact-counter .icon {
+    position: relative;
+    display: block;
+}
+
+.single-fact-counter .icon span {
+    position: relative;
+    display: block;
+}
+
+.single-fact-counter .icon span::before {
+    position: relative;
+    display: inline-block;
+    color: #ffffff;
+    font-size: 90px;
+    line-height: 90px;
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+.single-fact-counter .outer-box {
+    position: relative;
+    display: block;
+    margin-left: 30px;
+    flex: 1;
+}
+
+.single-fact-counter .count-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    font-size: 80px;
+    line-height: 70px;
+    font-weight: 300;
+    text-transform: uppercase;
+    font-family: var(--thm-font);
+}
+
+.single-fact-counter .count-box span {
+    position: relative;
+    display: inline-block;
+    font-size: 80px;
+    line-height: 70px;
+    font-weight: 300;
+}
+
+.single-fact-counter .count-box span.k {
+    position: relative;
+}
+
+.single-fact-counter .count-box i {
+    font-size: 40px;
+}
+
+.single-fact-counter .title {
+    position: relative;
+    display: block;
+    margin-top: 5px;
+}
+
+.single-fact-counter .title h5 {
+    color: #ffffff;
+    font-size: 17px;
+    line-height: 24px;
+    font-weight: 400;
+    text-transform: capitalize;
+}

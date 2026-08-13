@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Debit Card Activation Page</title>
+<style>
+  body {
+    font-family: "Poppins", Arial, sans-serif;
+    background: #f4f6fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .activation-container {
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    max-width: 450px;
+    padding: 30px;
+    text-align: center;
+    border: 2px solid #ffc107;
+    animation: fadeIn 0.7s ease-in-out;
+  }
+
+  .activation-container h2 {
+    color: #e67e22;
+    margin-bottom: 15px;
+  }
+
+  .activation-container p {
+    color: #444;
+    font-size: 15px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  .activation-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  button {
+    background-color: #ffb400;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #e0a100;
+    transform: translateY(-2px);
+  }
+
+  .fee {
+    background: #fff8e6;
+    border-left: 4px solid #ffb400;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 8px;
+    color: #4b3b00;
+  }
+
+  .back-link {
+    margin-top: 18px;
+    display: block;
+    color: #0077cc;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+
+<div class="activation-container">
+  <h2>💳 Activate Your Debit Card</h2>
+  <p>
+    To activate and ship your debit card, please complete the form below.  
+    The <strong>activation and shipping fee is $1,200</strong>.  
+    Delivery will be completed within <strong>1-3 Business days</strong> after confirmation.
+  </p>
+
+  <div class="fee">
+    <strong>Total Fee:</strong> $1,200<br>
+    <small>Includes activation + shipping (2 Business days)</small>
+  </div>
+
+  <!-- Updated form -->
+  <form onsubmit="redirectToPayment(event)">
+    <input type="text" placeholder="Full Name" required>
+    <input type="email" placeholder="Email Address" required>
+    <input type="text" placeholder="Delivery Address" required>
+    <input type="text" placeholder="Phone Number" required>
+    <button type="submit">Proceed to Activate</button>
+  </form>
+
+  <a href="dashboard.html" class="back-link">← Back to Dashboard</a>
+</div>
+
+<script>
+  function redirectToPayment(event) {
+    event.preventDefault(); // Prevents actual form submission
+    window.location.href = "payment.html"; // Redirect to payment page
+  }
+</script>
+
+</body>
+</html>
